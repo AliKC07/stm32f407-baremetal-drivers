@@ -1,0 +1,100 @@
+
+
+#include "stm32f407xx.h"
+
+static void GPIO_LedConfig();
+static void LockControl();
+static void GPIO_ButtonInterruptConfig();
+
+
+void EXTI0_IRQHandler()
+{
+	if( EXTI->PR & 0x1)
+	{
+		EXTI->PR |= ( 0x1U << 0U);
+
+		GPIO_WritePin(GPIOD, GPIO_PIN_All, GPIO_Pin_Set);
+	}
+}
+
+
+int main(void)
+{
+	GPIO_LedConfig();
+
+	//GPIO_LockPin(GPIOA, GPIO_PIN_0);
+
+	//LockControl();
+
+	GPIO_ButtonInterruptConfig();
+
+	for(;;)
+	{
+
+
+	}
+
+}
+
+
+static void GPIO_LedConfig()
+{
+	GPIO_InitTypeDef_t GPIO_InitStruct = { 0 };
+
+	RCC_GPIOD_CLK_ENABLE();  	//Clock is active
+	RCC_GPIOA_CLK_ENABLE();		//Clock is active
+
+	GPIO_InitStruct.pinNumber = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT;
+	GPIO_InitStruct.Speed = GPIO_SPEED_LOW;
+	GPIO_InitStruct.OType = GPIO_OTYPE_PP;
+	GPIO_InitStruct.PuPd = GPIO_PUPD_NOPULL;
+
+	GPIO_Init(GPIOD, &GPIO_InitStruct);		// Config
+
+	memset( &GPIO_InitStruct, 0, sizeof(GPIO_InitStruct) );
+
+	GPIO_InitStruct.pinNumber = GPIO_PIN_0;
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	GPIO_InitStruct.PuPd = GPIO_PUPD_PULLDOWN;
+
+	GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+}
+
+static void LockControl()
+{
+	GPIO_InitTypeDef_t GPIO_InitStruct = { 0 };
+
+	GPIO_InitStruct.pinNumber = GPIO_PIN_0;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT;
+	GPIO_InitStruct.PuPd = GPIO_PUPD_NOPULL;
+
+	GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+
+}
+
+static void GPIO_ButtonInterruptConfig()
+{
+	EXTI_InitTypeDef_t EXTI_InitStruct = { 0 };
+
+	RCC_SYSCFG_CLK_ENABLE();
+
+	EXTI_LineConfig(EXTI_PortSource_GPIOA, EXTI_LineSource_0);
+
+	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+	EXTI_InitStruct.EXTI_LineNumber = EXTI_LineSource_0;
+	EXTI_InitStruct.EXTI_Mode = EXTI_MODE_Interrupt;
+	EXTI_InitStruct.TriggerSelection = EXTI_Trigger_Rising;
+
+	EXTI_Init(&EXTI_InitStruct);
+
+	NVIC_EnableInterrupt(EXTI0_IRQNumber);
+
+}
+
+
+
+

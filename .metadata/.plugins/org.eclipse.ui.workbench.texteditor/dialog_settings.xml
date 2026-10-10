@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="false"/>
+		<list key="findhistory">
+			<item value="SPI_Periph"/>
+			<item value="USART"/>
+			<item value="receive"/>
+			<item value="SPI_P"/>
+			<item value="SPI_Ty"/>
+			<item value="memset"/>
+			<item value="struct"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="531"/>
+		<item key="DIALOG_Y_ORIGIN" value="328"/>
+	</section>
+</section>

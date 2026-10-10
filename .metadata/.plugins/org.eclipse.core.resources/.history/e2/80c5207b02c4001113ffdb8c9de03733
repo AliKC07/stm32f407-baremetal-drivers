@@ -1,0 +1,28 @@
+
+#ifndef INC_I2C_H_
+#define INC_I2C_H_
+
+#include "stm32f407xx.h"
+
+typedef struct
+{
+
+
+
+
+}I2C_InitTypeDef_t;
+
+typedef struct
+{
+	I2C_TypeDef_t *Instance;
+	I2C_InitTypeDef_t Init;
+
+
+
+
+}I2C_HandleTypeDef_t;
+
+
+
+
+#endif /* INC_I2C_H_ */

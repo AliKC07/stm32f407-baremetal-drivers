@@ -1,0 +1,14 @@
+../myDrivers/Src/SPI.c:11:13:SPI_CloseISR_TX	1
+../myDrivers/Src/SPI.c:27:13:SPI_CloseISR_RX	1
+../myDrivers/Src/SPI.c:43:13:SPI_TransmitHelper_16Bits	1
+../myDrivers/Src/SPI.c:58:13:SPI_TransmitHelper_8Bits	2
+../myDrivers/Src/SPI.c:78:13:SPI_ReceiveHelper_8Bits	1
+../myDrivers/Src/SPI.c:93:13:SPI_ReceiveHelper_16Bits	2
+../myDrivers/Src/SPI.c:113:6:SPI_Init	1
+../myDrivers/Src/SPI.c:135:6:SPI_PeriphCmd	2
+../myDrivers/Src/SPI.c:200:6:SPI_TransmitData_IT	3
+../myDrivers/Src/SPI.c:236:6:SPI_ReceiveData_IT	3
+../myDrivers/Src/SPI.c:260:6:SPI_InterruptHandler	5
+../myDrivers/Src/SPI.c:337:18:SPI_GetFlagStatus	1
+../myDrivers/Src/SPI.c:159:6:SPI_TransmitData	7
+../myDrivers/Src/SPI.c:298:6:SPI_ReceiveData	6
